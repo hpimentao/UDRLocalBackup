@@ -46,3 +46,5 @@ Functionality
     10.The script runs rsync to download the backups from the UDR.
     11.The script prints the number of files transferred and the total transfer size.
     12.The script exits.
+
+Note: This script has only been tested on a UniFi Dream Router. It may or may not work with the UniFi Dream Machine or UniFi Dream Machine Pro. Use at your own risk.
