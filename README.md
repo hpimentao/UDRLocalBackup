@@ -3,26 +3,26 @@ A script to remotely back up files from a UniFi Dream Router (UDR) to a local di
 
 file name: udr_backup.sh
 
-Dependencies
+**Dependencies**
 
     -rsync
     -ssh
 
-Configuration
+**Configuration**
 
 This script requires a configuration file located at /path/to/config/file/udr_backup.conf with the following variables:
 
     UDR_IP: IP address of the UDR
     UDR_USERNAME: username for the UDR
     LOCAL_BACKUP_DIR: local directory for the backups
-    SOURCE_BACKUP_DIR: directory on the UDR from which the backups will be downloaded
+    SOURCE_BACKUP_DIR: directory on the UDR from which the backups will be downloaded (For UDR autobackup files location: /ssd1/.data/unifi/data/backup/autobackup)
     SSH_KEYS: file containing the SSH keys for accessing the UDR
 
-Usage
+**Usage**
 
 <pre><code>./udr_backup.sh [-i UDR_IP] [-u UDR_USERNAME] [-d LOCAL_BACKUP_DIR] [-s SOURCE_BACKUP_DIR] [-q] [-n] [-h]</code></pre>
 
-Options
+**Options**
 
     -i UDR_IP: IP address of the UDR (overrides the value in the configuration file)
     -u UDR_USERNAME: username for the UDR (overrides the value in the configuration file)
@@ -32,7 +32,8 @@ Options
     -n: dry run (do not download the backups, just print what would have been transferred)
     -h: display usage information
 
-Functionality
+**Functionality**
+
 1. The script checks if the required dependencies, `rsync` and `ssh`, are installed on the system. If either is not found, it will exit with an error message.
 2. The script reads the configuration file located at `/path/to/config/file/udr_backup.conf` and sources it to read the variables defined in the file.
 3. The script checks if the SSH keys file specified in the configuration file (`$SSH_KEYS`) exists. If the file is not found, it will exit with an error message.
@@ -51,8 +52,10 @@ Functionality
 9. The script runs a dry-run of `rsync` to extract the number of files transferred. The `--dry-run` and `--stats` options are used to display transfer statistics without actually transferring any files. The `grep` and `awk` commands are used to extract the number of files transferred from the `rsync` output. The result is stored in the `$FILES_TRANSFERRED` variable.
 10. The script runs `rsync` to download the backups from the UniFi Dream Router. The `--update` and `--progress` options are used to skip files that are already up-to-date and display progress information, respectively. The `--stats` option is used to display transfer statistics.
 11. The script prints the number of files transferred and the total transfer size.
-12. The script exits.
-    
+12. The script lists and deletes the oldest backup and log files in the local backup directory if there are more than 20 of each type and finaly exits.
+
+**Scheduling**
+
 To schedule the script you can use a cron job.
 To edit the cron jobs for the current user, open a terminal and type:
 
