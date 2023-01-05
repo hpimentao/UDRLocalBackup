@@ -20,7 +20,7 @@ This script requires a configuration file located at /path/to/config/file/udr_ba
 
 Usage
 
-./udr_backup.sh [-i UDR_IP] [-u UDR_USERNAME] [-d LOCAL_BACKUP_DIR] [-s SOURCE_BACKUP_DIR] [-q] [-n] [-h]
+<pre><code>./udr_backup.sh [-i UDR_IP] [-u UDR_USERNAME] [-d LOCAL_BACKUP_DIR] [-s SOURCE_BACKUP_DIR] [-q] [-n] [-h]</code></pre>
 
 Options
 
@@ -50,10 +50,11 @@ Functionality
 To schedule the script you can use a cron job.
 To edit the cron jobs for the current user, open a terminal and type:
 
-crontab -e
+<pre><code>crontab -e</code></pre>
     
 If you want to schedule the script to run at a specific time or frequency, you can use the following syntax:
 
+<pre><code>
 # ┌───────────── minute (0 - 59)
 # │ ┌───────────── hour (0 - 23)
 # │ │ ┌───────────── day of the month (1 - 31)
@@ -63,12 +64,13 @@ If you want to schedule the script to run at a specific time or frequency, you c
 # │ │ │ │ │
 # │ │ │ │ │
 # * * * * *  command_to_execute
+</code></pre>
 
 For example, to schedule the script to run every day at 5 am, you can use the following cron job:
 
-0 5 * * * /path/to/udr_backup.sh -i UDR_IP -u UDR_USERNAME -d LOCAL_BACKUP_DIR -s SOURCE_BACKUP_DIR
+<pre><code>0 5 * * * /path/to/udr_backup.sh -i UDR_IP -u UDR_USERNAME -d LOCAL_BACKUP_DIR -s SOURCE_BACKUP_DIR</code></pre>
 or
-0 5 * * * /path/to/udr_backup.sh
+<pre><code>0 5 * * * /path/to/udr_backup.sh</code></pre>
 
 
 **Note**: This script has only been tested on a UniFi Dream Router. It may or may not work with the UniFi Dream Machine or UniFi Dream Machine Pro. Use at your own risk.
