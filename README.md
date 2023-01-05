@@ -46,5 +46,24 @@ Functionality
     10.The script runs rsync to download the backups from the UDR.
     11.The script prints the number of files transferred and the total transfer size.
     12.The script exits.
+    
+If you want to schedule the script to run at a different time or frequency, you can use the following syntax:
+
+# ┌───────────── minute (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of the month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday to Saturday;
+# │ │ │ │ │                                   7 is also Sunday on some systems)
+# │ │ │ │ │
+# │ │ │ │ │
+# * * * * *  command_to_execute
+
+For example, to schedule the script to run every day at 5 am, you can use the following cron job:
+
+0 5 * * * /path/to/udr_backup.sh -i UDR_IP -u UDR_USERNAME -d LOCAL_BACKUP_DIR -s SOURCE_BACKUP_DIR
+or
+0 5 * * * /path/to/udm_backup.sh
+
 
 Note: This script has only been tested on a UniFi Dream Router. It may or may not work with the UniFi Dream Machine or UniFi Dream Machine Pro. Use at your own risk.
